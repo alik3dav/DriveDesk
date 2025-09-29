@@ -1,13 +1,8 @@
-export type GenericTable = {
+type GenericTable = {
   Row: Record<string, unknown>
   Insert: Record<string, unknown>
   Update: Record<string, unknown>
   Relationships?: never
-}
-
-export type GenericFunction = {
-  Args: Record<string, unknown> | undefined
-  Returns: unknown
 }
 
 type ProfilesTable = {
@@ -123,13 +118,13 @@ type SupabaseFunctions = {
     Args: Record<string, never>
     Returns: unknown
   }
-} & Record<string, GenericFunction>
+}
 
 export type Database = {
   public: {
     Tables: {
       profiles: ProfilesTable
-    } & Record<string, GenericTable>
+    }
     Views: Record<string, GenericTable>
     Functions: SupabaseFunctions
     Enums: Record<string, unknown>
