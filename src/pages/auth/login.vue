@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 
-import { useToast } from '#imports'
+import { useToast } from '#ui'
 
 const authStore = useAuthStore()
 const toast = useToast()

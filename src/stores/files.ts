@@ -1,5 +1,5 @@
-import { useToast } from '#imports'
 import { defineStore } from 'pinia'
+import { useToast } from '#ui'
 import type { VehicleFile } from '~/types/vehicles'
 import type { Database } from '~/types/supabase'
 
