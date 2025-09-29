@@ -1,5 +1,7 @@
+import type { Database } from '~/types/supabase'
+
 export default defineNuxtPlugin(() => {
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
   const userStore = useUserStore()
 
   client.auth.onAuthStateChange(async (event) => {

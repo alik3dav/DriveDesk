@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { Database } from '~/types/supabase'
 
 export interface ReportConfig {
   start: string
@@ -24,7 +25,7 @@ export const useReportStore = defineStore('reports', () => {
     groupBy: 'vehicle'
   })
   const history = ref<ReportHistoryItem[]>([])
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const setConfig = (value: ReportConfig) => {
     config.value = value
@@ -32,7 +33,7 @@ export const useReportStore = defineStore('reports', () => {
 
   const fetchHistory = async () => {
     const { data } = await client.rpc('get_report_history')
-    history.value = (data as ReportHistoryItem[]) ?? []
+    history.value = Array.isArray(data) ? (data as ReportHistoryItem[]) : []
   }
 
   const generate = async () => {

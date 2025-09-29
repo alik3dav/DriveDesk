@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { Database } from '~/types/supabase'
 
 interface NotificationSettings {
   daysBeforeDue: number
@@ -14,7 +15,7 @@ export const useSettingsStore = defineStore('settings', () => {
     email: true,
     push: true
   })
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const saveNotificationSettings = async () => {
     await client.rpc('save_notification_settings', { settings: notificationSettings.value })

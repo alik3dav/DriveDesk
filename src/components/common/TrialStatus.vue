@@ -7,7 +7,7 @@
         <p class="text-xs text-slate-500 dark:text-slate-400">{{ subline }}</p>
       </div>
     </div>
-    <UProgress :value="progress" color="brand" />
+    <UProgress :value="progress" :color="progressColor" />
     <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400">
       <span>{{ $t('subscription.started') }} {{ formatDate(trial.startedAt) }}</span>
       <span>{{ $t('subscription.ends') }} {{ formatDate(trial.endsAt) }}</span>
@@ -54,6 +54,17 @@ const iconColor = computed(() => {
       return 'text-amber-500'
     default:
       return 'text-rose-500'
+  }
+})
+
+const progressColor = computed(() => {
+  switch (props.trial.status) {
+    case 'active':
+      return 'emerald'
+    case 'expiring-soon':
+      return 'amber'
+    default:
+      return 'rose'
   }
 })
 

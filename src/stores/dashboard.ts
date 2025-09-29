@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { DashboardState } from '~/types/dashboard'
+import type { Database } from '~/types/supabase'
 
 const initialState: DashboardState = {
   metrics: [],
@@ -10,7 +11,7 @@ const initialState: DashboardState = {
 export const useDashboardStore = defineStore('dashboard', () => {
   const dashboard = ref<DashboardState>({ ...initialState })
   const loading = ref(false)
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const fetchDashboard = async () => {
     loading.value = true

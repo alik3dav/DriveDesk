@@ -4,7 +4,7 @@
       <template #header>
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">{{ title }}</h3>
       </template>
-      <UForm class="space-y-4" @submit.prevent="submit">
+      <UForm :state="form" class="space-y-4" @submit.prevent="submit">
         <UFormGroup :label="$t('checks.name')">
           <UInput v-model="form.name" required />
         </UFormGroup>

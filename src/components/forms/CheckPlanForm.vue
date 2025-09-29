@@ -4,7 +4,7 @@
       <template #header>
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">{{ $t('checks.addPlan') }}</h3>
       </template>
-      <UForm class="space-y-4" @submit.prevent="submit">
+      <UForm :state="form" class="space-y-4" @submit.prevent="submit">
         <UFormGroup v-if="!props.vehicleId" :label="$t('vehicles.title')">
           <USelect v-model="form.vehicleId" :options="vehicleOptions" option-attribute="label" value-attribute="value" />
         </UFormGroup>
