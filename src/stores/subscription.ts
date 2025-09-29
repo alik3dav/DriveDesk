@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { SubscriptionState } from '~/types/subscriptions'
+import type { Database } from '~/types/supabase'
 
 export const useSubscriptionStore = defineStore('subscription', () => {
   const subscription = ref<SubscriptionState>({
@@ -13,7 +14,7 @@ export const useSubscriptionStore = defineStore('subscription', () => {
       message: ''
     }
   })
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const fetchSubscription = async () => {
     const { data } = await client.rpc('get_subscription_state')

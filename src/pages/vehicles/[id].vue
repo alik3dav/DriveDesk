@@ -23,7 +23,7 @@ const route = useRoute()
 const vehicleStore = useVehicleStore()
 const { vehicleDetail } = storeToRefs(vehicleStore)
 const vehicleId = computed(() => route.params.id as string)
-const activeTab = ref('overview')
+const activeTab = ref(0)
 
 const tabs = [
   { label: 'Overview', slot: 'overview' },

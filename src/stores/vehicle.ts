@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { VehicleDetail, VehicleFile, VehicleFormState, VehicleHistoryItem, VehicleListItem } from '~/types/vehicles'
 import type { CheckLog, CheckPlan } from '~/types/checks'
+import type { Database } from '~/types/supabase'
 
 export interface VehicleFilterState {
   status: 'all' | 'ok' | 'due-soon' | 'overdue'
@@ -44,7 +45,7 @@ export const useVehicleStore = defineStore('vehicles', () => {
     history: [],
     files: []
   })
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const filteredVehicles = computed(() => {
     return vehicles.value.filter((vehicle) => {
@@ -58,7 +59,7 @@ export const useVehicleStore = defineStore('vehicles', () => {
 
   const fetchVehicles = async () => {
     const { data } = await client.rpc('get_client_vehicles')
-    vehicles.value = (data as VehicleListItem[]) ?? []
+    vehicles.value = Array.isArray(data) ? (data as VehicleListItem[]) : []
   }
 
   const fetchVehicleDetail = async (id: string) => {

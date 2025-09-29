@@ -1,16 +1,17 @@
 import { defineStore } from 'pinia'
 import type { CheckLog, CheckPlan, CheckSummaryItem, CheckType, CheckTypeOption, DueCheckRow } from '~/types/checks'
+import type { Database } from '~/types/supabase'
 
 export const useCheckStore = defineStore('checks', () => {
   const types = ref<CheckType[]>([])
   const options = ref<CheckTypeOption[]>([])
   const summary = ref<CheckSummaryItem[]>([])
   const dueChecks = ref<DueCheckRow[]>([])
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const fetchCheckTypes = async () => {
     const { data } = await client.rpc('get_check_types')
-    types.value = (data as CheckType[]) ?? []
+    types.value = Array.isArray(data) ? (data as CheckType[]) : []
     options.value = types.value.map((type) => ({ label: type.name, value: type.id }))
   }
 
@@ -24,12 +25,12 @@ export const useCheckStore = defineStore('checks', () => {
 
   const fetchSummary = async () => {
     const { data } = await client.rpc('get_check_summary')
-    summary.value = (data as CheckSummaryItem[]) ?? []
+    summary.value = Array.isArray(data) ? (data as CheckSummaryItem[]) : []
   }
 
   const fetchDueChecks = async () => {
     const { data } = await client.rpc('get_due_checks')
-    dueChecks.value = (data as DueCheckRow[]) ?? []
+    dueChecks.value = Array.isArray(data) ? (data as DueCheckRow[]) : []
   }
 
   const saveCheckType = async (payload: Partial<CheckType>) => {
@@ -43,7 +44,7 @@ export const useCheckStore = defineStore('checks', () => {
   }
 
   const uploadFiles = async (vehicleId: string, files: File[]) => {
-    const supabase = useSupabaseClient()
+    const supabase = useSupabaseClient<Database>()
     for (const file of files) {
       await supabase.storage.from('vehicle-files').upload(`${vehicleId}/${file.name}`, file, {
         upsert: true

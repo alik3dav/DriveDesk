@@ -8,11 +8,14 @@
 </template>
 
 <script setup lang="ts">
-const client = useSupabaseClient()
+import type { Database } from '~/types/supabase'
+
+const client = useSupabaseClient<Database>()
 const route = useRoute()
 
 onMounted(async () => {
-  await client.auth.exchangeCodeForSession(route.query)
+  const query = new URLSearchParams(route.query as Record<string, string | string[]>).toString()
+  await client.auth.exchangeCodeForSession(query)
   await navigateTo('/')
 })
 </script>

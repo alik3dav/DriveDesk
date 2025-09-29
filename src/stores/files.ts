@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { VehicleFile } from '~/types/vehicles'
+import type { Database } from '~/types/supabase'
 
 export interface FileFilterState {
   vehicle: string
@@ -10,11 +11,11 @@ export interface FileFilterState {
 export const useFileStore = defineStore('files', () => {
   const files = ref<VehicleFile[]>([])
   const filters = ref<FileFilterState>({ vehicle: '', type: '', uploadedBy: '' })
-  const client = useSupabaseClient()
+  const client = useSupabaseClient<Database>()
 
   const fetchFiles = async () => {
     const { data } = await client.rpc('get_client_files', { filters: filters.value })
-    files.value = (data as VehicleFile[]) ?? []
+    files.value = Array.isArray(data) ? (data as VehicleFile[]) : []
   }
 
   const setFilters = (value: FileFilterState) => {

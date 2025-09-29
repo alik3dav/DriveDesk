@@ -9,12 +9,12 @@
         </div>
       </template>
 
-      <UForm class="space-y-4" @submit.prevent="signIn">
+      <UForm :state="form" class="space-y-4" @submit.prevent="signIn">
         <UFormGroup :label="$t('auth.email')">
-          <UInput v-model="email" type="email" required />
+          <UInput v-model="form.email" type="email" required />
         </UFormGroup>
         <UFormGroup :label="$t('auth.password')">
-          <UInput v-model="password" type="password" required />
+          <UInput v-model="form.password" type="password" required />
         </UFormGroup>
         <UButton :loading="loading" type="submit" block>{{ $t('auth.signIn') }}</UButton>
       </UForm>
@@ -26,14 +26,18 @@
 </template>
 
 <script setup lang="ts">
-const client = useSupabaseClient()
+import type { Database } from '~/types/supabase'
+
+const client = useSupabaseClient<Database>()
 const loading = ref(false)
-const email = ref('')
-const password = ref('')
+const form = reactive({
+  email: '',
+  password: ''
+})
 
 const signIn = async () => {
   loading.value = true
-  const { error } = await client.auth.signInWithPassword({ email: email.value, password: password.value })
+  const { error } = await client.auth.signInWithPassword({ email: form.email, password: form.password })
   loading.value = false
   if (error) {
     useToast().add({ title: 'Error', description: error.message, color: 'rose' })
