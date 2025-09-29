@@ -1,10 +1,13 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "#ui": ["./node_modules/@nuxt/ui/dist/runtime"],
       "#ui/*": ["./node_modules/@nuxt/ui/dist/runtime/*"],
-      "#tailwind-config/*": ["./tailwind-config/*"]
+      "#tailwind-config/*": ["./tailwind-config/*"],
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   }
 }

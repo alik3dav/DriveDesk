@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import type { CheckTypeOption } from '~/types/checks'
+import type { VehicleListItem } from '~/types/vehicles'
 
 interface Props {
   modelValue: boolean
@@ -58,7 +59,7 @@ const form = reactive({
 
 const checkTypeOptions = computed<CheckTypeOption[]>(() => checkStore.options)
 const vehicleOptions = computed(() =>
-  vehicleStore.vehicles.map((vehicle) => ({
+  vehicleStore.vehicles.map((vehicle: VehicleListItem) => ({
     label: `${vehicle.plate} · ${vehicle.make} ${vehicle.model}`,
     value: vehicle.id
   }))
