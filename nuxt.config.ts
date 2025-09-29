@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/ui'
   ],
+  components: [{ path: '~/components', pathPrefix: false }],
   alias: {
     '#tailwind-config': resolve(currentDir, 'tailwind-config')
   },
