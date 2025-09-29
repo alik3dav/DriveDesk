@@ -2,10 +2,16 @@ export const useTheme = () => {
   const preference = useState<'light' | 'dark'>('theme-preference', () => 'light')
 
   watchEffect(() => {
+    if (!import.meta.client) {
+      return
+    }
+
+    const root = document.documentElement
+
     if (preference.value === 'dark') {
-      document.documentElement.classList.add('dark')
+      root.classList.add('dark')
     } else {
-      document.documentElement.classList.remove('dark')
+      root.classList.remove('dark')
     }
   })
 
