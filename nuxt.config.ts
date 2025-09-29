@@ -1,6 +1,6 @@
-import { defineNuxtConfig } from 'nuxt/config'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { defineNuxtConfig } from 'nuxt/config'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
