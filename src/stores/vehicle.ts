@@ -46,6 +46,10 @@ export const useVehicleStore = defineStore('vehicles', () => {
     files: []
   })
   const client = useSupabaseClient<Database>()
+  const rpc = <Fn extends keyof Database['public']['Functions']>(
+    fn: Fn,
+    args: Database['public']['Functions'][Fn]['Args']
+  ) => client.rpc(fn, args as never)
 
   const filteredVehicles = computed(() => {
     return vehicles.value.filter((vehicle) => {
@@ -63,7 +67,7 @@ export const useVehicleStore = defineStore('vehicles', () => {
   }
 
   const fetchVehicleDetail = async (id: string) => {
-    const { data } = await client.rpc('get_vehicle_detail', { p_vehicle_id: id })
+    const { data } = await rpc('get_vehicle_detail', { p_vehicle_id: id })
     if (data) {
       vehicleDetail.value = data as VehicleDetailState
     }
@@ -74,7 +78,7 @@ export const useVehicleStore = defineStore('vehicles', () => {
   }
 
   const saveVehicle = async (payload: VehicleFormState) => {
-    await client.rpc('upsert_vehicle', { payload })
+    await rpc('upsert_vehicle', { payload: payload as unknown as Record<string, unknown> })
     await fetchVehicles()
   }
 

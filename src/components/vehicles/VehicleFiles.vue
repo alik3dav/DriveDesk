@@ -6,7 +6,7 @@
           <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ $t('files.title') }}</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('files.description') }}</p>
         </div>
-        <UButton icon="i-mdi-upload" @click="triggerUpload">{{ $t('files.upload') }}</UButton>
+        <UButton icon="i-lucide-upload" @click="triggerUpload">{{ $t('files.upload') }}</UButton>
         <input ref="fileInput" type="file" class="hidden" multiple @change="handleFiles" />
       </div>
     </template>
@@ -22,8 +22,8 @@
       </template>
       <template #actions-data="{ row }">
         <div class="flex items-center gap-2">
-          <UButton icon="i-mdi-download" size="xs" color="gray" variant="ghost" @click="download(row.id)" />
-          <UButton icon="i-mdi-delete" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
+          <UButton icon="i-lucide-download" size="xs" color="gray" variant="ghost" @click="download(row.id)" />
+          <UButton icon="i-lucide-trash-2" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
         </div>
       </template>
     </UTable>

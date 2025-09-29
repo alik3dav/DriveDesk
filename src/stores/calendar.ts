@@ -6,8 +6,13 @@ export const useCalendarStore = defineStore('calendar', () => {
   const events = ref<CalendarEvent[]>([])
   const client = useSupabaseClient<Database>()
 
+  const rpc = <Fn extends keyof Database['public']['Functions']>(
+    fn: Fn,
+    args: Database['public']['Functions'][Fn]['Args']
+  ) => client.rpc(fn, args as never)
+
   const fetchEvents = async (range: { start: Date; end: Date }) => {
-    const { data } = await client.rpc('get_calendar_events', {
+    const { data } = await rpc('get_calendar_events', {
       p_start: range.start.toISOString(),
       p_end: range.end.toISOString()
     })

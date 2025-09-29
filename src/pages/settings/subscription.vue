@@ -10,8 +10,8 @@
       </div>
       <div class="space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900/40">
         <h3 class="text-sm font-semibold text-slate-900 dark:text-white">{{ $t('subscription.actions') }}</h3>
-        <UButton color="gray" variant="soft" icon="i-mdi-calendar-plus" @click="extendTrial">{{ $t('subscription.extendTrial') }}</UButton>
-        <UButton color="emerald" icon="i-mdi-check-decagram" @click="activate">{{ $t('subscription.activate') }}</UButton>
+        <UButton color="gray" variant="soft" icon="i-lucide-calendar-plus" @click="extendTrial">{{ $t('subscription.extendTrial') }}</UButton>
+        <UButton color="emerald" icon="i-lucide-badge-check" @click="activate">{{ $t('subscription.activate') }}</UButton>
         <p class="text-xs text-slate-500 dark:text-slate-400">{{ $t('subscription.billingNotice') }}</p>
       </div>
     </div>

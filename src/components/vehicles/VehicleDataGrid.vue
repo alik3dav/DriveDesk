@@ -13,8 +13,8 @@
       </template>
       <template #actions-data="{ row }">
         <div class="flex items-center gap-2">
-          <UButton size="xs" color="gray" variant="ghost" icon="i-mdi-note-edit" @click.stop="edit(row.id)" />
-          <UButton size="xs" color="gray" variant="ghost" icon="i-mdi-file-download" @click.stop="download(row.id)" />
+          <UButton size="xs" color="gray" variant="ghost" icon="i-lucide-pencil" @click.stop="edit(row.id)" />
+          <UButton size="xs" color="gray" variant="ghost" icon="i-lucide-file-down" @click.stop="download(row.id)" />
         </div>
       </template>
     </UTable>

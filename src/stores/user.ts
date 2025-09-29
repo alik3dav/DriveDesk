@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user', () => {
 
   const updateProfile = async (payload: { fullName: string; phone: string | null }) => {
     if (!profile.value) return
-    await client.from('profiles').update({
+    await (client.from('profiles') as any).update({
       full_name: payload.fullName,
       phone: payload.phone
     }).eq('id', profile.value.id)

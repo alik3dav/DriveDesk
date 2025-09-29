@@ -14,10 +14,10 @@
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <UButton color="gray" variant="soft" icon="i-mdi-clock-alert" @click="$emit('update')">
+        <UButton color="gray" variant="soft" icon="i-lucide-alarm-clock" @click="$emit('update')">
           {{ $t('vehicles.logCheck') }}
         </UButton>
-        <UButton icon="i-mdi-note-edit" @click="$emit('edit')">
+        <UButton icon="i-lucide-pencil" @click="$emit('edit')">
           {{ $t('common.edit') }}
         </UButton>
       </div>

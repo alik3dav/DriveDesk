@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
     <div class="flex items-center gap-2">
-      <UButton color="gray" variant="ghost" icon="i-mdi-chevron-left" @click="previous" />
-      <UButton color="gray" variant="ghost" icon="i-mdi-chevron-right" @click="next" />
+      <UButton color="gray" variant="ghost" icon="i-lucide-chevron-left" @click="previous" />
+      <UButton color="gray" variant="ghost" icon="i-lucide-chevron-right" @click="next" />
       <UButton color="gray" variant="soft" @click="today">{{ $t('calendar.today') }}</UButton>
     </div>
     <div class="flex items-center gap-2">

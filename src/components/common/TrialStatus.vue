@@ -38,11 +38,11 @@ const progress = computed(() => props.trial.progress)
 const icon = computed(() => {
   switch (props.trial.status) {
     case 'active':
-      return 'mdi:progress-clock'
+      return 'lucide:timer'
     case 'expiring-soon':
-      return 'mdi:clock-alert'
+      return 'lucide:alarm-clock'
     default:
-      return 'mdi:alert-octagon'
+      return 'lucide:octagon-alert'
   }
 })
 

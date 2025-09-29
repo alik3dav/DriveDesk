@@ -6,8 +6,8 @@
         <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('vehicles.subtitle') }}</p>
       </div>
       <div class="flex gap-2">
-        <UButton color="gray" variant="soft" icon="i-mdi-tray-arrow-down" @click="exportFleet">{{ $t('common.export') }}</UButton>
-        <UButton icon="i-mdi-plus" @click="openVehicleForm">{{ $t('vehicles.addVehicle') }}</UButton>
+        <UButton color="gray" variant="soft" icon="i-lucide-download" @click="exportFleet">{{ $t('common.export') }}</UButton>
+        <UButton icon="i-lucide-plus" @click="openVehicleForm">{{ $t('vehicles.addVehicle') }}</UButton>
       </div>
     </div>
 

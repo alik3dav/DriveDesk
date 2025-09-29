@@ -3,14 +3,14 @@
     <template #header>
       <div class="flex items-center justify-between">
         <h2 class="text-lg font-semibold text-slate-900 dark:text-white">{{ $t('settings.checkTypes') }}</h2>
-        <UButton icon="i-mdi-plus" @click="openForm">{{ $t('checks.addType') }}</UButton>
+        <UButton icon="i-lucide-plus" @click="openForm">{{ $t('checks.addType') }}</UButton>
       </div>
     </template>
     <UTable :rows="types" :columns="columns">
       <template #actions-data="{ row }">
         <div class="flex items-center gap-2">
-          <UButton icon="i-mdi-pencil" size="xs" color="gray" variant="ghost" @click="edit(row)" />
-          <UButton icon="i-mdi-delete" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
+          <UButton icon="i-lucide-pencil" size="xs" color="gray" variant="ghost" @click="edit(row)" />
+          <UButton icon="i-lucide-trash-2" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
         </div>
       </template>
     </UTable>

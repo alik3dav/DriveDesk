@@ -3,7 +3,7 @@
     class="flex h-full w-[var(--sidebar-width)] flex-col border-r border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-900/60"
   >
     <div class="flex h-16 items-center gap-2 px-6">
-      <Icon name="mdi:steering" class="h-8 w-8 text-brand-500" />
+      <Icon name="lucide:steering-wheel" class="h-8 w-8 text-brand-500" />
       <div>
         <p class="text-lg font-semibold text-slate-900 dark:text-white">{{ appName }}</p>
         <p class="text-xs text-slate-500 dark:text-slate-400">Fleet Maintenance Manager</p>
@@ -36,13 +36,13 @@ const config = useRuntimeConfig()
 const version = '0.1.0'
 
 const navigation = [
-  { to: '/', icon: 'mdi:view-dashboard-outline', label: 'navigation.dashboard' },
-  { to: '/vehicles', icon: 'mdi:car-estate', label: 'navigation.vehicles' },
-  { to: '/checks', icon: 'mdi:clipboard-check-outline', label: 'navigation.checks' },
-  { to: '/calendar', icon: 'mdi:calendar-month-outline', label: 'navigation.calendar' },
-  { to: '/reports', icon: 'mdi:chart-box-outline', label: 'navigation.reports' },
-  { to: '/files', icon: 'mdi:file-multiple-outline', label: 'navigation.files' },
-  { to: '/settings', icon: 'mdi:cog-outline', label: 'navigation.settings' }
+  { to: '/', icon: 'lucide:layout-dashboard', label: 'navigation.dashboard' },
+  { to: '/vehicles', icon: 'lucide:car', label: 'navigation.vehicles' },
+  { to: '/checks', icon: 'lucide:clipboard-check', label: 'navigation.checks' },
+  { to: '/calendar', icon: 'lucide:calendar-days', label: 'navigation.calendar' },
+  { to: '/reports', icon: 'lucide:chart-column', label: 'navigation.reports' },
+  { to: '/files', icon: 'lucide:files', label: 'navigation.files' },
+  { to: '/settings', icon: 'lucide:settings', label: 'navigation.settings' }
 ] as const
 
 const appName = computed(() => config.public.appName)

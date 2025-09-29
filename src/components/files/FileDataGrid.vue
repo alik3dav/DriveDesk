@@ -10,8 +10,8 @@
       <template #size-data="{ row }">{{ formatSize(row.size) }}</template>
       <template #actions-data="{ row }">
         <div class="flex items-center gap-2">
-          <UButton icon="i-mdi-download" size="xs" color="gray" variant="ghost" @click="download(row.id)" />
-          <UButton icon="i-mdi-delete" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
+          <UButton icon="i-lucide-download" size="xs" color="gray" variant="ghost" @click="download(row.id)" />
+          <UButton icon="i-lucide-trash-2" size="xs" color="rose" variant="ghost" @click="remove(row.id)" />
         </div>
       </template>
     </UTable>

@@ -26,7 +26,8 @@ export interface VehicleFormState {
   notes?: string
 }
 
-export interface VehicleDetail extends VehicleFormState {
+export interface VehicleDetail extends Omit<VehicleFormState, 'id'> {
+  id: string
   displayName: string
   lastService?: string
   nextService?: string
