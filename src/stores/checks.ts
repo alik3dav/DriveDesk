@@ -8,7 +8,7 @@ export const useCheckStore = defineStore('checks', () => {
   const summary = ref<CheckSummaryItem[]>([])
   const dueChecks = ref<DueCheckRow[]>([])
   const client = useSupabaseClient<Database>()
-  const rpc = <Fn extends keyof Database['public']['Functions']>(
+  const rpc = <Fn extends Extract<keyof Database['public']['Functions'], string>>(
     fn: Fn,
     args: Database['public']['Functions'][Fn]['Args']
   ) => client.rpc(fn, args as never)

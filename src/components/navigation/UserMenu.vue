@@ -29,7 +29,9 @@
 const userStore = useUserStore()
 const authStore = useAuthStore()
 const profile = computed(() => userStore.profile)
-const initials = computed(() => profile.value?.fullName?.split(' ').map((n) => n[0]).join('').slice(0, 2) ?? 'DD')
+const initials = computed(
+  () => profile.value?.fullName?.split(' ').map((n: string) => n[0]).join('').slice(0, 2) ?? 'DD'
+)
 
 const signOut = async () => {
   await authStore.signOut()

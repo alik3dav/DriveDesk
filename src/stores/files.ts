@@ -14,7 +14,7 @@ export const useFileStore = defineStore('files', () => {
   const filters = ref<FileFilterState>({ vehicle: '', type: '', uploadedBy: '' })
   const client = useSupabaseClient<Database>()
   const notifier = useNotifier()
-  const rpc = <Fn extends keyof Database['public']['Functions']>(
+  const rpc = <Fn extends Extract<keyof Database['public']['Functions'], string>>(
     fn: Fn,
     args: Database['public']['Functions'][Fn]['Args']
   ) => client.rpc(fn, args as never)
