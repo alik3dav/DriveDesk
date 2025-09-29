@@ -14,8 +14,19 @@ const client = useSupabaseClient<Database>()
 const route = useRoute()
 
 onMounted(async () => {
-  const query = new URLSearchParams(route.query as Record<string, string | string[]>).toString()
-  await client.auth.exchangeCodeForSession(query)
+  const query = new URLSearchParams()
+  Object.entries(route.query).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((item) => {
+        if (item != null) {
+          query.append(key, item)
+        }
+      })
+    } else if (value != null) {
+      query.append(key, value)
+    }
+  })
+  await client.auth.exchangeCodeForSession(query.toString())
   await navigateTo('/')
 })
 </script>
