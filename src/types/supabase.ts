@@ -6,7 +6,7 @@ export type GenericTable = {
 }
 
 export type GenericFunction = {
-  Args: Record<string, unknown> | undefined
+  Args: Record<string, unknown>
   Returns: unknown
 }
 

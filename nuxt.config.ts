@@ -1,4 +1,8 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -16,7 +20,16 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/ui'
   ],
+  alias: {
+    '#tailwind-config': resolve(currentDir, 'tailwind-config')
+  },
   css: ['~/assets/css/tailwind.css', '~/assets/css/theme.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
+  },
   tailwindcss: {
     viewer: true
   },
