@@ -1,0 +1,15 @@
+:root {
+  --sidebar-width: 280px;
+}
+
+body {
+  @apply bg-slate-100 text-slate-900 transition-colors duration-300 ease-out;
+}
+
+a {
+  @apply text-sky-600 hover:text-sky-500;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
