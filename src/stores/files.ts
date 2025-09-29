@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useToast } from '#ui'
+import { useNotifier } from '~/composables/useNotifier'
 import type { VehicleFile } from '~/types/vehicles'
 import type { Database } from '~/types/supabase'
 
@@ -13,7 +13,7 @@ export const useFileStore = defineStore('files', () => {
   const files = ref<VehicleFile[]>([])
   const filters = ref<FileFilterState>({ vehicle: '', type: '', uploadedBy: '' })
   const client = useSupabaseClient<Database>()
-  const toast = useToast()
+  const notifier = useNotifier()
   const rpc = <Fn extends keyof Database['public']['Functions']>(
     fn: Fn,
     args: Database['public']['Functions'][Fn]['Args']
@@ -30,7 +30,10 @@ export const useFileStore = defineStore('files', () => {
   }
 
   const openUpload = () => {
-    toast.add({ title: 'Upload', description: 'Drag files onto any vehicle to upload', color: 'brand' })
+    notifier.notify({
+      title: 'Upload',
+      description: 'Drag files onto any vehicle to upload'
+    })
   }
 
   const download = (id: string) => rpc('download_vehicle_file', { file_id: id })
