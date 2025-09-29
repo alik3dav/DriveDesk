@@ -3,7 +3,7 @@
     <UCard class="w-full max-w-md">
       <template #header>
         <div class="text-center">
-          <Icon name="mdi:steering" class="mx-auto h-10 w-10 text-brand-500" />
+          <Icon name="lucide:steering-wheel" class="mx-auto h-10 w-10 text-brand-500" />
           <h1 class="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">{{ $t('auth.welcome') }}</h1>
           <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('auth.signInSubtitle') }}</p>
         </div>
@@ -26,21 +26,19 @@
 </template>
 
 <script setup lang="ts">
-import type { Database } from '~/types/supabase'
 
-const client = useSupabaseClient<Database>()
-const loading = ref(false)
+const authStore = useAuthStore()
+const toast = useToast()
+const loading = computed(() => authStore.loading)
 const form = reactive({
   email: '',
   password: ''
 })
 
 const signIn = async () => {
-  loading.value = true
-  const { error } = await client.auth.signInWithPassword({ email: form.email, password: form.password })
-  loading.value = false
-  if (error) {
-    useToast().add({ title: 'Error', description: error.message, color: 'rose' })
+  const success = await authStore.signIn({ email: form.email, password: form.password })
+  if (!success) {
+    toast.add({ title: 'Error', description: authStore.error ?? 'Unable to sign in', color: 'rose' })
     return
   }
   navigateTo('/')

@@ -7,7 +7,7 @@
             <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ $t('checks.activePlans') }}</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('checks.planDescription') }}</p>
           </div>
-          <UButton color="gray" variant="soft" icon="i-mdi-plus" @click="openPlanForm">{{ $t('checks.addPlan') }}</UButton>
+          <UButton color="gray" variant="soft" icon="i-lucide-plus" @click="openPlanForm">{{ $t('checks.addPlan') }}</UButton>
         </div>
       </template>
       <UTable :rows="plans" :columns="planColumns">
@@ -30,7 +30,7 @@
             <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ $t('checks.logs') }}</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('checks.logDescription') }}</p>
           </div>
-          <UButton icon="i-mdi-clipboard-plus" @click="openLogForm">{{ $t('checks.logCheck') }}</UButton>
+          <UButton icon="i-lucide-clipboard-plus" @click="openLogForm">{{ $t('checks.logCheck') }}</UButton>
         </div>
       </template>
       <UTimeline :items="timeline">

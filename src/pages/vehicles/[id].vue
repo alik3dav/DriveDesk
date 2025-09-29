@@ -1,6 +1,6 @@
 <template>
   <div class="space-y-6">
-    <VehicleHeader :vehicle="vehicle" @update="refresh" />
+    <VehicleHeader v-if="vehicle" :vehicle="vehicle" @update="refresh" />
     <UTabs v-model="activeTab" :items="tabs" class="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
       <template #item-overview>
         <VehicleOverview v-if="vehicle" :vehicle="vehicle" />
@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import type { VehicleDetail } from '~/types/vehicles'
 const route = useRoute()
 const vehicleStore = useVehicleStore()
 const { vehicleDetail } = storeToRefs(vehicleStore)
@@ -40,7 +41,7 @@ const refresh = () => {
   vehicleStore.fetchVehicleDetail(vehicleId.value)
 }
 
-const vehicle = computed(() => vehicleDetail.value.vehicle?.id ? vehicleDetail.value.vehicle : null)
+const vehicle = computed<VehicleDetail | null>(() => vehicleDetail.value.vehicle?.id ? vehicleDetail.value.vehicle : null)
 const plans = computed(() => vehicleDetail.value.checkPlans)
 const logs = computed(() => vehicleDetail.value.checkLogs)
 const history = computed(() => vehicleDetail.value.history)

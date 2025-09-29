@@ -1,6 +1,6 @@
 <template>
   <UPopover>
-    <UButton color="gray" variant="ghost" size="sm" icon="i-mdi-translate" />
+    <UButton color="gray" variant="ghost" size="sm" icon="i-lucide-languages" />
     <template #panel>
       <div class="w-40 p-2">
         <button
@@ -10,7 +10,7 @@
           @click="setLocale(locale.code)"
         >
           <span>{{ locale.name }}</span>
-          <Icon v-if="current === locale.code" name="mdi:check" class="h-4 w-4 text-brand-500" />
+          <Icon v-if="current === locale.code" name="lucide:check" class="h-4 w-4 text-brand-500" />
         </button>
       </div>
     </template>

@@ -8,6 +8,10 @@ export const useCheckStore = defineStore('checks', () => {
   const summary = ref<CheckSummaryItem[]>([])
   const dueChecks = ref<DueCheckRow[]>([])
   const client = useSupabaseClient<Database>()
+  const rpc = <Fn extends keyof Database['public']['Functions']>(
+    fn: Fn,
+    args: Database['public']['Functions'][Fn]['Args']
+  ) => client.rpc(fn, args as never)
 
   const fetchCheckTypes = async () => {
     const { data } = await client.rpc('get_check_types')
@@ -16,11 +20,11 @@ export const useCheckStore = defineStore('checks', () => {
   }
 
   const createPlan = async (payload: Partial<CheckPlan>) => {
-    await client.rpc('create_check_plan', { payload })
+    await rpc('create_check_plan', { payload })
   }
 
   const createLog = async (payload: Partial<CheckLog>) => {
-    await client.rpc('create_check_log', { payload })
+    await rpc('create_check_log', { payload })
   }
 
   const fetchSummary = async () => {
@@ -34,12 +38,12 @@ export const useCheckStore = defineStore('checks', () => {
   }
 
   const saveCheckType = async (payload: Partial<CheckType>) => {
-    await client.rpc('upsert_check_type', { payload })
+    await rpc('upsert_check_type', { payload })
     await fetchCheckTypes()
   }
 
   const deleteCheckType = async (id: string) => {
-    await client.rpc('delete_check_type', { id })
+    await rpc('delete_check_type', { id })
     await fetchCheckTypes()
   }
 
@@ -53,11 +57,11 @@ export const useCheckStore = defineStore('checks', () => {
   }
 
   const downloadFile = async (fileId: string) => {
-    await client.rpc('download_vehicle_file', { file_id: fileId })
+    await rpc('download_vehicle_file', { file_id: fileId })
   }
 
   const deleteFile = async (fileId: string) => {
-    await client.rpc('delete_vehicle_file', { file_id: fileId })
+    await rpc('delete_vehicle_file', { file_id: fileId })
   }
 
   return {

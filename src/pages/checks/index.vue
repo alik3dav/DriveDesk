@@ -6,8 +6,8 @@
         <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('checks.subtitle') }}</p>
       </div>
       <div class="flex gap-2">
-        <UButton color="gray" variant="soft" icon="i-mdi-cog" to="/settings/checks">{{ $t('checks.manageTypes') }}</UButton>
-        <UButton icon="i-mdi-plus" @click="openPlanForm">{{ $t('checks.addPlan') }}</UButton>
+        <UButton color="gray" variant="soft" icon="i-lucide-settings" to="/settings/checks">{{ $t('checks.manageTypes') }}</UButton>
+        <UButton icon="i-lucide-plus" @click="openPlanForm">{{ $t('checks.addPlan') }}</UButton>
       </div>
     </div>
 

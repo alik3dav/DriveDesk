@@ -26,6 +26,10 @@ export const useReportStore = defineStore('reports', () => {
   })
   const history = ref<ReportHistoryItem[]>([])
   const client = useSupabaseClient<Database>()
+  const rpc = <Fn extends keyof Database['public']['Functions']>(
+    fn: Fn,
+    args: Database['public']['Functions'][Fn]['Args']
+  ) => client.rpc(fn, args as never)
 
   const setConfig = (value: ReportConfig) => {
     config.value = value
@@ -37,7 +41,7 @@ export const useReportStore = defineStore('reports', () => {
   }
 
   const generate = async () => {
-    await client.rpc('generate_report', { config: config.value })
+    await rpc('generate_report', { config: config.value })
     await fetchHistory()
   }
 

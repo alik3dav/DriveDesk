@@ -6,7 +6,7 @@
           <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ $t('vehicles.history') }}</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('vehicles.historyDescription') }}</p>
         </div>
-        <UButton color="gray" variant="soft" icon="i-mdi-tray-arrow-down" @click="$emit('export')">
+        <UButton color="gray" variant="soft" icon="i-lucide-download" @click="$emit('export')">
           {{ $t('common.export') }}
         </UButton>
       </div>

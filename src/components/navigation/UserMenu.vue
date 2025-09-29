@@ -13,11 +13,11 @@
           to="/settings/profile"
           class="flex w-full items-center gap-2 rounded px-2 py-2 hover:bg-slate-100 dark:hover:bg-slate-800"
         >
-          <Icon name="mdi:account-cog" class="h-4 w-4" />
+          <Icon name="lucide:user-cog" class="h-4 w-4" />
           {{ $t('navigation.profile') }}
         </NuxtLink>
         <button class="flex w-full items-center gap-2 rounded px-2 py-2 hover:bg-slate-100 dark:hover:bg-slate-800" @click="signOut">
-          <Icon name="mdi:logout" class="h-4 w-4" />
+          <Icon name="lucide:log-out" class="h-4 w-4" />
           {{ $t('auth.signOut') }}
         </button>
       </div>
@@ -27,13 +27,12 @@
 
 <script setup lang="ts">
 const userStore = useUserStore()
+const authStore = useAuthStore()
 const profile = computed(() => userStore.profile)
 const initials = computed(() => profile.value?.fullName?.split(' ').map((n) => n[0]).join('').slice(0, 2) ?? 'DD')
 
-const client = useSupabaseClient()
-
 const signOut = async () => {
-  await client.auth.signOut()
+  await authStore.signOut()
   await navigateTo('/auth/login')
 }
 </script>

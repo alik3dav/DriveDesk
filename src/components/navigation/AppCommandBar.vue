@@ -4,7 +4,7 @@
   >
     <div class="flex items-center gap-3">
       <button class="md:hidden">
-        <Icon name="mdi:menu" class="h-6 w-6" />
+        <Icon name="lucide:menu" class="h-6 w-6" />
       </button>
       <slot name="breadcrumbs">
         <nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
@@ -13,7 +13,7 @@
       </slot>
     </div>
     <div class="flex items-center gap-4">
-      <UButton size="sm" color="gray" variant="ghost" icon="i-mdi-theme-light-dark" @click="toggleTheme" />
+      <UButton size="sm" color="gray" variant="ghost" icon="i-lucide-sun-moon" @click="toggleTheme" />
       <LocaleSwitcher />
       <UserMenu />
     </div>

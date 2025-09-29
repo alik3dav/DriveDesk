@@ -6,12 +6,31 @@ type GenericTable = {
 }
 
 type ProfilesTable = {
-  Row: Record<string, unknown>
-  Insert: Record<string, unknown>
-  Update: {
+  Row: {
+    id: string
+    email: string
+    full_name: string | null
+    phone: string | null
+    role: 'admin' | 'manager' | 'viewer'
+    client_id: string
+    subscription_status: 'active' | 'locked'
+  }
+  Insert: {
+    id?: string
+    email: string
     full_name?: string | null
     phone?: string | null
-    [key: string]: unknown
+    role: 'admin' | 'manager' | 'viewer'
+    client_id: string
+    subscription_status?: 'active' | 'locked'
+  }
+  Update: {
+    email?: string
+    full_name?: string | null
+    phone?: string | null
+    role?: 'admin' | 'manager' | 'viewer'
+    client_id?: string
+    subscription_status?: 'active' | 'locked'
   }
   Relationships?: never
 }

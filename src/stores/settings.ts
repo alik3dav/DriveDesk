@@ -16,9 +16,13 @@ export const useSettingsStore = defineStore('settings', () => {
     push: true
   })
   const client = useSupabaseClient<Database>()
+  const rpc = <Fn extends keyof Database['public']['Functions']>(
+    fn: Fn,
+    args: Database['public']['Functions'][Fn]['Args']
+  ) => client.rpc(fn, args as never)
 
   const saveNotificationSettings = async () => {
-    await client.rpc('save_notification_settings', { settings: notificationSettings.value })
+    await rpc('save_notification_settings', { settings: notificationSettings.value })
   }
 
   return { notificationSettings, saveNotificationSettings }

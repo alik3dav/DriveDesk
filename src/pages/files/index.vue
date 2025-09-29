@@ -6,8 +6,8 @@
         <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('files.subtitle') }}</p>
       </div>
       <div class="flex gap-2">
-        <UButton color="gray" variant="soft" icon="i-mdi-filter" @click="toggleFilters">{{ $t('common.filters') }}</UButton>
-        <UButton icon="i-mdi-upload" @click="upload">{{ $t('files.upload') }}</UButton>
+        <UButton color="gray" variant="soft" icon="i-lucide-filter" @click="toggleFilters">{{ $t('common.filters') }}</UButton>
+        <UButton icon="i-lucide-upload" @click="upload">{{ $t('files.upload') }}</UButton>
       </div>
     </div>
 

@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-semibold text-slate-900 dark:text-white">{{ $t('reports.title') }}</h1>
         <p class="text-sm text-slate-500 dark:text-slate-400">{{ $t('reports.subtitle') }}</p>
       </div>
-      <UButton icon="i-mdi-file-chart" @click="generate">{{ $t('reports.generate') }}</UButton>
+      <UButton icon="i-lucide-file-chart-line" @click="generate">{{ $t('reports.generate') }}</UButton>
     </div>
 
     <ReportBuilder :config="config" @update:config="updateConfig" />
