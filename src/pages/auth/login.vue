@@ -27,8 +27,6 @@
 
 <script setup lang="ts">
 
-import { useToast } from '#ui'
-
 const authStore = useAuthStore()
 const toast = useToast()
 const loading = computed(() => authStore.loading)
